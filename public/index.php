@@ -24,9 +24,10 @@
         </div>
     </div>
     <div class="song-container">
-        <div class="song-name">
-            You are currently hearing: {{currentSong.name}} - <span v-for="artist in currentSong.artists">{{artist.name}} </span>
+        <div v-if="currentSong.is_playing" class="song-name">
+            You are currently hearing: {{currentSong.item.name}} - <span v-for="artist in currentSong.item.artists">{{artist.name}} </span>
         </div>
+        <div v-else>Song paused</div>
     </div>
 </div>
 <script src="./vue/index.js"></script>

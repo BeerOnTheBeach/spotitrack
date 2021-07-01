@@ -16,22 +16,20 @@ const app = new Vue({
         //Get current song
         axios.get('./api/account/currentSong.php')
             .then(function (response) {
-                app.currentSong = response['data']['item']
-                console.log(app.currentSong)
+                app.currentSong = response['data']
             })
             .catch(function (error) {
                 console.error(error)
             });
         //Start current song getter interval
-        this.getCurrentSongEverySecond()
+        this.getCurrentSong()
     },
     methods: {
-        getCurrentSongEverySecond() {
+        getCurrentSong() {
             setInterval(() => {
                 axios.get('./api/account/currentSong.php')
                     .then(function (response) {
-                        app.currentSong = response['data']['item']
-                        console.log(app.currentSong)
+                        app.currentSong = response['data']
                     })
                     .catch(function (error) {
                         console.error(error)
