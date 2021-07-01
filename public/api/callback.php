@@ -4,9 +4,8 @@ require '../../vendor/autoload.php';
 if ($_SERVER['HTTP_HOST'] == 'localhost') {
     $redirectUri = "http://" . $_SERVER['HTTP_HOST'] . "/spotitrack/public/api/callback.php";
 } else {
-    $redirectUri = "http://" . $_SERVER['HTTP_HOST'] . "/public/api/callback.php";
+    $redirectUri = "http://" . $_SERVER['HTTP_HOST'] . "/api/callback.php";
 }
-
 
 $session = new SpotifyWebAPI\Session(
     'a1754536c44c462b97ac8cd3c2f82bf7',
