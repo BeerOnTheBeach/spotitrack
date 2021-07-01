@@ -13,18 +13,30 @@ const app = new Vue({
             .catch(function (error) {
                 console.error(error)
             });
-        setInterval(this.getCurrentSong(),1000)
+        //Get current song
+        axios.get('./api/account/currentSong.php')
+            .then(function (response) {
+                app.currentSong = response['data']['item']
+                console.log(app.currentSong)
+            })
+            .catch(function (error) {
+                console.error(error)
+            });
+        //Start current song getter interval
+        this.getCurrentSongEverySecond()
     },
     methods: {
-        getCurrentSong() {
-            axios.get('./api/account/currentSong.php')
-                .then(function (response) {
-                    app.currentSong = response['data']['item']
-                    console.log(app.currentSong)
-                })
-                .catch(function (error) {
-                    console.error(error)
-                });
+        getCurrentSongEverySecond() {
+            setInterval(() => {
+                axios.get('./api/account/currentSong.php')
+                    .then(function (response) {
+                        app.currentSong = response['data']['item']
+                        console.log(app.currentSong)
+                    })
+                    .catch(function (error) {
+                        console.error(error)
+                    });
+            }, 2000)
         }
     }
 })
